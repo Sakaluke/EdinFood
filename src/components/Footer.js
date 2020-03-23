@@ -5,7 +5,7 @@ function Footer() {
     <div className='footer'>
       <h1>
         <i class='fas fa-copyright'></i> Copyright {new Date().getFullYear()}{' '}
-        Goosefx.com
+        goosefx.com
       </h1>
     </div>
   );

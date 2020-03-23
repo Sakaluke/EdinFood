@@ -72,12 +72,6 @@ const Mapquest = ({
             : `<h4><center> ${data[index]['Premises Name']}<center/><h4/> <p style="color:blue"> ${data[index]['FHIS Status']} <p/>`
         )
 
-        // `${data[index]['FHIS Status']}` === `Improvement Required`
-        //   ? `<p style="color:red"> ${data[index]['FHIS Status']} <p/>`
-        //   : `<p style="color:blue"> ${data[index]['FHIS Status']} <p/>`
-
-        // `<h4><center> ${data[index]['Premises Name']}<center/><h4/> <p style="color:blue"> ${data[index]['FHIS Status']} <p/>`
-
         .addTo(layerGroup);
     });
   };

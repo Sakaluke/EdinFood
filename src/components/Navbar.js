@@ -3,7 +3,9 @@ import React from 'react';
 function Navbar() {
   return (
     <nav className='navbar bg-primary'>
-      <img src='/edinfoodlogoalpha.png' className='Logo' alt='logo' />
+      <a href='/'>
+        <img src='/edinfoodlogoalpha.png' className='Logo' alt='logo' />{' '}
+      </a>
       <h1>Edinburgh Food Health & Safety Check</h1>
       <ul>
         <li>

@@ -12,7 +12,7 @@ function Results({ items }) {
           `meow is: ${item['FHIS Status'] === 'Improvement Required          '}`
         )}
       </div>
-      <div>
+      <div className='result-img'>
         {item['FHIS Status'] === 'Improvement Required          ' ? (
           <img src='/Edin-Fail.png' className='imgg' />
         ) : (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import Navbar from './components/Navbar';
 import Search from './components/Search';
 import Results from './components/Results';
@@ -10,6 +10,7 @@ import About from './pages/About';
 import './App.css';
 import data from './health.json';
 import Axios from 'axios';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   const [filterData, setFilterData] = useState([]);
@@ -74,30 +75,45 @@ function App() {
     setTimeout(() => setAlert(null), 4000);
   };
   return (
-    <div className='App'>
-      <Navbar />
-      <div className='container'>
-        <Mapquest
-          height='30vh'
-          width='100%'
-          center={latLng}
-          tileLayer={'map'}
-          zoom={12}
-          apiKey={`${process.env.REACT_APP_EDINFOOD_MAPQUEST_KEY}`}
-          cleanUp={showMarkers}
-          data={filterData}
-        />
-        <Alert alert={alert} />
-        <Search
-          searchName={searchName}
-          clearAllMarkers={clearAllMarkers}
-          showClear={filterData.length > 0 ? true : false}
-          setAlert={showAlert}
-        />
-        <Results items={filterData} />
+    <Router>
+      <div className='App'>
+        <Navbar />
+        <div className='container'>
+          <Switch>
+            <Route
+              exact
+              path='/'
+              render={props => (
+                <Fragment>
+                  <Mapquest
+                    height='30vh'
+                    width='100%'
+                    center={latLng}
+                    tileLayer={'map'}
+                    zoom={12}
+                    apiKey={`${process.env.REACT_APP_EDINFOOD_MAPQUEST_KEY}`}
+                    cleanUp={showMarkers}
+                    data={filterData}
+                  />
+                  <Alert alert={alert} />
+                  <Search
+                    searchName={searchName}
+                    clearAllMarkers={clearAllMarkers}
+                    showClear={filterData.length > 0 ? true : false}
+                    setAlert={showAlert}
+                  />
+                  <Results items={filterData} />
+                </Fragment>
+              )}
+            />
+
+            <Route exact path='/about' component={About} />
+          </Switch>
+        </div>
+
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </Router>
   );
 }
 

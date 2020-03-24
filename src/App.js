@@ -6,7 +6,7 @@ import Mapquest from './components/Mapquest';
 import Alert from './components/Alert';
 import Footer from './components/Footer';
 import axios from 'axios';
-import About from './pages/About';
+import About from './components/About';
 import './App.css';
 import data from './health.json';
 import Axios from 'axios';

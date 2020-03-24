@@ -7,10 +7,7 @@ function Results({ items }) {
         <h1>{item['Premises Name']}</h1>
         <h3>Postcode: {item.Postcode} </h3>
         <h3>Last Inspection: {item['Inspection Date']}</h3>
-        <h1>Status:{item['FHIS Status']} </h1>
-        {console.log(
-          `meow is: ${item['FHIS Status'] === 'Improvement Required          '}`
-        )}
+        <h1>Status: {item['FHIS Status']} </h1>
       </div>
       <div className='result-img'>
         {item['FHIS Status'] === 'Improvement Required          ' ? (

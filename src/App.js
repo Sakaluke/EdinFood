@@ -90,7 +90,7 @@ function App() {
                     width='100%'
                     center={latLng}
                     tileLayer={'map'}
-                    zoom={12}
+                    zoom={11}
                     apiKey={`${process.env.REACT_APP_EDINFOOD_MAPQUEST_KEY}`}
                     cleanUp={showMarkers}
                     data={filterData}

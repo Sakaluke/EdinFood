@@ -35,7 +35,7 @@ const Search = ({ searchName, clearAllMarkers, showClear, setAlert }) => {
         <input
           type='submit'
           value='Search'
-          className='btn btn-dark btn-block'
+          className='btn btn-dark btn-block '
         />
       </form>
     </div>

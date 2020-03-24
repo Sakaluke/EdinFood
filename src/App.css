@@ -467,7 +467,7 @@ table th {
   }
 }
 .Logo {
-  width: 6rem;
+  width: 5rem;
   animation-name: beatHeart;
   animation: 1.7s infinite beatHeart;
 }

@@ -8,7 +8,7 @@ const Mapquest = ({
   zoom,
   apiKey,
   cleanUp,
-  data
+  data,
 }) => {
   console.log(`center is !!!!!!!: ${center}`);
   const [locations, setLocations] = useState([]);
@@ -20,7 +20,7 @@ const Mapquest = ({
   // }, [center]);
   // console.log(`locationsREADY are: ${locationsReady}`);
   useEffect(() => {
-    setLocations(prevState => [...prevState, center]);
+    setLocations((prevState) => [...prevState, center]);
   }, [center]);
 
   let marker;
@@ -33,7 +33,7 @@ const Mapquest = ({
     map = window.L.mapquest.map('map', {
       center,
       layers: window.L.mapquest.tileLayer(tileLayer),
-      zoom
+      zoom,
     });
 
     layerGroup = window.L.layerGroup().addTo(map);
@@ -50,6 +50,9 @@ const Mapquest = ({
     };
   }, [locations]);
 
+  useEffect(() => {
+    setLocations([]);
+  }, [cleanUp]);
   // display marker function
 
   const showMarkers = () => {
@@ -63,8 +66,8 @@ const Mapquest = ({
           icon: {
             primaryColor: '#333333',
             secondaryColor: '#333333',
-            size: 'md'
-          }
+            size: 'md',
+          },
         })
         .bindPopup(
           data[index]['FHIS Status'] === 'Improvement Required          '
@@ -76,10 +79,6 @@ const Mapquest = ({
     });
   };
 
-  useEffect(() => {
-    setLocations([]);
-  }, [cleanUp]);
-
-  return <div id='map' style={{ width, height }}></div>;
+  return <div id='map' style={{ height: '400px' }}></div>;
 };
 export default Mapquest;

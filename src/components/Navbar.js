@@ -7,7 +7,9 @@ function Navbar() {
       <a href='/'>
         <img src='/edinfoodlogoalpha.png' className='Logo' alt='logo' />
       </a>
-      <h1 className='mainheader'>Edinburgh Food Health & Safety Check</h1>
+      <h2 className='mainheader' style={{ fontWeight: '400' }}>
+        Edinburgh Food Health & Safety Check
+      </h2>
       <ul>
         <li>
           <Link to='/'>Home</Link>

@@ -19,10 +19,34 @@ function App() {
   const [alert, setAlert] = useState(null);
   const [latLng, setLatlng] = useState([55.9533, -3.1883]);
 
-  console.log(`filterData is:  ${filterData}`);
+  // Filter Postcodes
+  useEffect(() => {
+    if (filterData.length > 0) {
+      const filterPostcodes = filterData.map((item) => {
+        return item.Postcode;
+      });
+      setFilterPostcode(filterPostcodes);
+    }
+  }, [filterData]);
+  // --------------------------------------------------------------------
+  useEffect(() => {
+    //Convert Postcodes into lat and lng by making this api request
+    const convertPostcodes = async (value) => {
+      const res = await axios.get(
+        `https://api.postcodes.io/postcodes/${value}`
+      );
 
-  const searchName = text => {
-    let objectsMatchingSearch = data.filter(item => {
+      setLatlng([res.data.result.latitude, res.data.result.longitude]);
+    };
+
+    if (filterPostcodes.length > 0) {
+      filterPostcodes.forEach(convertPostcodes);
+      clearAllMarkers(false);
+    }
+  }, [filterPostcodes]);
+  // --------------------------------------------------------------------
+  const searchName = (text) => {
+    let objectsMatchingSearch = data.filter((item) => {
       return item['Premises Name']
         .toLocaleUpperCase()
         .includes(text.toLocaleUpperCase());
@@ -30,45 +54,10 @@ function App() {
     // console.log(objectsMatchingSearch);
     return setFilterData(objectsMatchingSearch);
   };
-
-  // Filter Postcodes
-  useEffect(() => {
-    if (filterData.length > 0) {
-      const filterPostcodes = filterData.map(item => {
-        return item.Postcode;
-      });
-      setFilterPostcode(filterPostcodes);
-    }
-  }, [filterData]);
-  // --------------------------------------------------------------------
-
-  //Convert Postcodes into lat and lng by making this api request
-  const convertPostcodes = async value => {
-    const res = await axios.get(`https://api.postcodes.io/postcodes/${value}`);
-
-    setLatlng([res.data.result.latitude, res.data.result.longitude]);
-  };
-  // let theArray = [];
-
-  // const convertPostcodes = async value => {
-  //   const res = await axios
-  //     .get(`https://api.postcodes.io/postcodes/${value}`)
-  //     .then(res => {
-  //       setLatlng([res.data.result.latitude, res.data.result.longitude]);
-
-  //     });
-  // };
-
-  const clearAllMarkers = bool => {
+  //Clear markers
+  const clearAllMarkers = (bool) => {
     setShowMarkers(bool);
   };
-
-  useEffect(() => {
-    if (filterPostcodes.length > 0) {
-      filterPostcodes.forEach(convertPostcodes);
-      clearAllMarkers(false);
-    }
-  }, [filterPostcodes]);
   //Set Alert
   const showAlert = (msg, type) => {
     setAlert({ msg, type });
@@ -83,7 +72,7 @@ function App() {
             <Route
               exact
               path='/'
-              render={props => (
+              render={(props) => (
                 <Fragment>
                   <Mapquest
                     height='30vh'

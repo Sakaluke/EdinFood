@@ -27,7 +27,7 @@ const Search = ({ searchName, clearAllMarkers, showClear, setAlert }) => {
         <input
           type='text'
           name='text'
-          placeholder='Type a business...'
+          placeholder='Type a hospitality business...'
           value={text}
           onChange={onChange}
         />
